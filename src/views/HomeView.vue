@@ -9,7 +9,7 @@
         <div v-if = "isMenuOpen" class = "menu-overlay" @click = "closeMenu"></div>
         <div class="menu" :class="{ 'menu-open': isMenuOpen}">
           <router-link to = "/" @click="closeMenu">Home</router-link>
-          <router-link to = "/about" @click = "closeMenu">About</router-link>
+          <router-link to = "/youtube" @click = "closeMenu">Youtube</router-link>
         </div>
     </nav>
     <h1> Steam Games Viewer</h1>
