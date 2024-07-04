@@ -1,4 +1,4 @@
-# type_vue
+# api 및 UI 연습장
 
 ## Project setup
 ```
