@@ -40,7 +40,7 @@
   export default defineComponent({
     name : 'YoutubeSearch',
     setup(){
-      const API_KEY = 'AIzaSyA8zpWrP1-jNjf14CIBL-tW2dTTK_444XU';
+      // const API_KEY = 'AIzaSyA8zpWrP1-jNjf14CIBL-tW2dTTK_444XU';
       const searchQuery = ref('');
       const videos = ref<VideoItem[]>([]);
       const loading = ref(false);
@@ -54,13 +54,13 @@
         videos.value = [];
 
         try {
-          const response = await axios.get<{items : VideoItem[]}>('https://www.googleapis.com/youtube/v3/search', {
+          const response = await axios.get<{items : VideoItem[]}>('/api/youtube/search', {
             params : {
-              part : 'snippet',
-              type : 'video',
+              // part : 'snippet',
+              // type : 'video',
               q : searchQuery.value,
-              key : API_KEY,
-              maxResults : 10
+              // key : API_KEY,
+              // maxResults : 10
             }
           });
 
@@ -73,12 +73,17 @@
         }
       };
 
+      const openVideo = (videoId : string): void => {
+        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+      };
+
       return {
         searchQuery,
         videos,
         loading,
         error,
-        searchVideos
+        searchVideos,
+        openVideo
       }
     }
   })
@@ -116,6 +121,11 @@ button {
 .video-item {
   border: 1px solid #ddd;
   padding: 10px;
+  cursor: pointer;
+}
+
+.video-item:hover {
+  background-color: #f0f0f0;
 }
 
 .video-item img {

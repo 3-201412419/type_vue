@@ -49,16 +49,16 @@
                 games.value = [];
 
                 try {
-                    const response = await axios.get('/api/IPlayerService/GetOwnedGames/v1/', {
+                    const response = await axios.get('/api/steam/IPlayerService/GetOwnedGames/v1/', {
                         params : {
-                            key : '4266E0BAAFA8356457C83F142725CD4C',
+                            // key : process.env.VUE_APP_STEAM_API_KEY,
                             steamid : steamId.value,
                             include_appinfo : 1,
                             format : 'json'
                         }
                     });
 
-                    console.log('API Response:', response.data);
+                    console.log('Steam API Response:', response.data);
 
                     if (response.data.response && response.data.response.games) {
                         games.value = response.data.response.games;

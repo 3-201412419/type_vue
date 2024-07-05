@@ -2,13 +2,17 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   devServer : {
     proxy: {
-      '/api': {
+      '^/api/steam': {
         target : 'https://api.steampowered.com',
         changeOrigin : true,
         pathRewrite : {
-          '^/api': ''
+          '^/api/steam': ''
         },
         logLevel : 'debug'
+      },
+      '^/api/youtube':  {
+        target : 'http://localhost:3000',
+        changeOrigin : true,
       }
     }
   },
