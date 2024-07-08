@@ -10,6 +10,7 @@
         <div class="menu" :class="{ 'menu-open': isMenuOpen}">
           <router-link to = "/" @click="closeMenu">Home</router-link>
           <router-link to = "/youtube" @click = "closeMenu">Youtube</router-link>
+          <router-link to = "/movies" @click = "closeMenu">Movies</router-link>
         </div>
     </nav>
     <h1> Steam Games Viewer</h1>

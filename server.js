@@ -45,6 +45,25 @@ app.get('/api/steam/*', async(req,res) => {
         console.error('Steam Api Error', error);
         res.status(500).json({ error :  'An error occurred while fetching Steam data'});
     }
+});
+
+app.get('/api/tmdb/*', async(req,res) => {
+    try{
+        const tmdbApiUrl = `https://api.themoviedb.org/3${req.path.replace('/api/tmdb', '')}`;
+        const response = await axios.get(tmdbApiUrl, {
+            params : {
+                ...req.query,
+                api_key : process.env.VUE_APP_TMDB_API_KEY
+            }
+        });
+
+        res.json(response.data);
+
+    }catch (error){
+        console.error('TMDB API Error:', error);
+        res.status(500).json({ error : 'An error occurred while fetching TMDB data'});
+        
+    }
 })
 
 app.get('*', (req,res) => {
